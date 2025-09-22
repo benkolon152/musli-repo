@@ -5,6 +5,11 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 export default class App extends React.Component {
+
+  state = {
+    musliData: null
+  }
+
   render(){
     return(
       <div className='page-container'>
@@ -34,18 +39,22 @@ export default class App extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td>1</td><td>Classic Muesli</td><td>$4.65</td></tr>
-                  <tr><td>2</td><td>Berry Lovers</td><td>$3.02</td></tr>
-                  <tr><td>3</td><td>Nuts & Honey</td><td>$4.12</td></tr>
-                  <tr><td>4</td><td>Tropical Mix</td><td>$4.93</td></tr>
-                  <tr><td>5</td><td>Choco Delight</td><td>$2.73</td></tr>
-                  <tr><td>6</td><td>Organic Oats</td><td>$3.55</td></tr>
-                  <tr><td>7</td><td>Apple Cinnamon</td><td>$5.42</td></tr>
-                  <tr><td>8</td><td>Fruit & Nut</td><td>$5.60</td></tr>
+                  
                 </tbody>
               </table>
             </main>
       </div>
     )
+  }
+  async componentDidMount(){
+    try{
+      let musliData = await fetch("http://localhost:3333/musli")
+      console.log('musliData', musliData)
+      musliData = await musliData.json()
+      console.log('musliData', musliData)
+    } catch (e){
+      console.warn('Error', e)
+    }
+
   }
 }
