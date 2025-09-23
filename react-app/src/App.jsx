@@ -7,7 +7,9 @@ import './App.css'
 export default class App extends React.Component {
 
   state = {
-    musliData: null
+    musliData: {
+      result: []
+    }
   }
 
   render(){
@@ -39,7 +41,12 @@ export default class App extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  
+                  {/*JSON.stringify(this.state.musliData)*/}
+                  {this.state.musliData.result.map(musli => <tr key={musli.id}>
+                    <td>{musli.id}</td>
+                    <td>{musli.name}</td>
+                    <td>{musli.price}</td>
+                  </tr>)}
                 </tbody>
               </table>
             </main>
@@ -52,6 +59,8 @@ export default class App extends React.Component {
       console.log('musliData', musliData)
       musliData = await musliData.json()
       console.log('musliData', musliData)
+
+      this.setState({musliData})
     } catch (e){
       console.warn('Error', e)
     }
