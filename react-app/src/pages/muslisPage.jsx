@@ -1,9 +1,10 @@
 import React from "react";
+import '../App.css'
 
-export default class MuslisPage extends Component{
+export default class MuslisPage extends React.Component{
     state = {
         musliData: {
-        result: []
+            result: []
         }
     }
     
